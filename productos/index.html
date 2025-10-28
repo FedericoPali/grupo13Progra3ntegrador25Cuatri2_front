@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="./js/main.js"></script>
+    <script defer src="js/productos.js"></script>
+    <title>Parcial</title>
+</head>
+<body>
+    <header>
+        <h1>Fruteria</h1>
+        <nav id="nav">
+            <label for="barraBusqueda"></label>
+            <input type="text" id="barraBusqueda" placeholder="Buscar...">
+        </nav>
+        <h2 id="contadorCarrito"></h2>
+    </header>
+    <main>
+        <h1 id="titulo">Nuestras Frutas</h1>
+        <button id="ordenarPorNombre">Ordenar por Nombre</button>
+        <button id="ordenarPorPrecio">Ordenar por Precio</button>
+        <section id= "listaProductos"></section>
+        <section id="carrito">
+            <h2>carrito</h2>
+            <ul id="objetosCarrito"></ul>
+        </section>
+        <footer id="footer">
+            <h2 id="totalPrecioCarrito"></h2>
+            <button id="vaciarCarrito">Vaciar Carrito</button>
+        </footer>
+    </main>
+</body>
+</html>
