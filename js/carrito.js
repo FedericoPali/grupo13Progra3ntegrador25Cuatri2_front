@@ -28,9 +28,9 @@ function actualizarCarrito() {
                     </div>
                 </div>
                 <div class="opcionesCarrito">
-                    <button class="btn-outline eliminar" onclick="eliminarProducto(${i}, false)">-</button>
+                    <button class="btn-outline" onclick="eliminarProducto(${i}, false)">-</button>
                     <p>${p.cantidad}</p>
-                    <button class="btn-outline agregar" onclick="agregarCarrito(${p.id})">+</button>
+                    <button class="btn-outline" onclick="agregarCarrito(${p.id})">+</button>
                 </div>
                 <p style="font-size: 18px; min-width: 100px;">$${p.precio * p.cantidad}.-</p>
             </li>

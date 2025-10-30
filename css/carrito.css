@@ -151,7 +151,6 @@ button {
     justify-content: space-between;
     background-color: white;
     width: 30%;
-    height: auto;
     margin-left: 20px;
     border-radius: 8px;
     text-align: start;
@@ -204,15 +203,6 @@ button {
 .btn-outline.red.disable,
 .btn-outline.red:hover {
     background-color: rgb(201, 61, 61) !important;
-}
-
-.btn-outline.green {
-    background-color: rgb(124, 255, 124) !important;
-}
-
-.btn-outline.green.disable,
-.btn-outline.green:hover {
-    background-color: rgb(61, 201, 61) !important;
 }
 
 .btn-outline.green {
