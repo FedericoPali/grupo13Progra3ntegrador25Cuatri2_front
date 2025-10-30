@@ -1,14 +1,3 @@
-// Array de productos (esto luego vendrá de un fetch a tu backend)
-const frutasTienda = [
-    {id:1 , nombre: "anana", precio: 3000, ruta_img: "assets/images/anana.jpg" },
-    {id:2 , nombre: "arandano", precio: 5000, ruta_img: "assets/images/arandano.jpg" },
-    {id:3 , nombre: "banana", precio: 1000, ruta_img: "assets/images/banana.jpg" },
-    {id:4 , nombre: "frambuesa", precio: 4000, ruta_img: "assets/images/frambuesa.png" },
-    {id:5 , nombre: "frutilla", precio: 3000, ruta_img: "assets/images/frutilla.jpg" },
-    {id:6 , nombre: "kiwi", precio: 2000, ruta_img: "assets/images/kiwi.jpg" }
-    // ... agrega más productos si quieres para probar
-];
-
 // --- 1. OBTENER ELEMENTOS DEL DOM ---
 const listaProductos = document.getElementById("listaProductos");
 const barraBusqueda = document.getElementById("barraBusqueda");

@@ -1,0 +1,234 @@
+/* Estilos principales */
+main {
+    text-align: center;
+    margin: 0%;
+}
+
+/* Carrito */
+.carrito-main {
+    display: flex;
+    padding: 1% 8% 0 8%;
+}
+
+.carrito-main h2 {
+    margin: 15px;
+}
+
+.carrito-main .bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carrito-main p {
+    margin: 0%;
+}
+
+.carrito-main h3 {
+    margin: 10px 0 10px 10px;
+    font-size: 16px;
+}
+
+.carrito-main hr {
+    margin: 0;
+}
+
+.carrito-productos {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 8px;
+    text-align: start;
+}
+
+.carrito-productos
+.productos {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.carrito-productos
+.productos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carrito-productos
+.productos
+.bloque-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px;
+    margin: -1px;
+    border-color: gray;
+    border-width:  0 0 1px 0;
+    border-style: solid;
+}
+
+.carrito-productos
+.productos
+.bloque-item
+.img-nombre {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.carrito-productos
+.productos
+.bloque-item
+.img-nombre div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.carrito-productos
+.productos
+.bloque-item
+.img-nombre img {
+    border-radius: 10px;
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.carrito-productos
+.productos
+.bloque-item
+.img-nombre p {
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.carrito-productos
+.productos
+.bloque-item
+.opcionesCarrito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.carrito-productos
+.productos
+.bloque-item
+.opcionesCarrito
+button {
+    display: flex;
+    border: 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+.carrito-productos
+.productos
+.bloque-item
+.opcionesCarrito p {
+    margin: 0 10px 0 10px;
+}
+
+.carrito-resumen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    width: 30%;
+    height: auto;
+    margin-left: 20px;
+    border-radius: 8px;
+    text-align: start;
+}
+
+.carrito-resumen .bloque-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 0 15px;
+}
+
+.carrito-resumen .bloque-item p {
+    margin: 10px 0 0 0;
+}
+
+/* Botones */
+.btn-outline {
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    font-size: 13px;
+    background-color: transparent;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: rgb(76, 76, 76);
+    border-width: 1px;
+    border-style: solid;
+}
+
+.btn-outline.disable {
+    background-color: rgb(62, 62, 62);
+    cursor: not-allowed;
+    color: rgb(47, 47, 47);
+}
+
+.btn-outline:hover {
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+.btn-outline.disable:hover {
+    cursor: not-allowed;
+}
+
+.btn-outline.red {
+    background-color: rgb(255, 124, 124) !important;
+}
+
+.btn-outline.red.disable,
+.btn-outline.red:hover {
+    background-color: rgb(201, 61, 61) !important;
+}
+
+.btn-outline.green {
+    background-color: rgb(124, 255, 124) !important;
+}
+
+.btn-outline.green.disable,
+.btn-outline.green:hover {
+    background-color: rgb(61, 201, 61) !important;
+}
+
+.btn-outline.green {
+    background-color: rgb(124, 255, 124) !important;
+}
+
+.btn-outline.green.disable,
+.btn-outline.green:hover {
+    background-color: rgb(61, 201, 61) !important;
+}
+
+.btn-outline.blue {
+    background-color: rgb(124, 170, 255) !important;
+}
+
+.btn-outline.blue.disable,
+.btn-outline.blue:hover {
+    background-color: rgb(61, 75, 201) !important;
+}

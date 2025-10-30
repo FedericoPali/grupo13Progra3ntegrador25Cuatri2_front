@@ -1,2 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Carrito - Tienda</title>
+    
+    <link rel="icon" href="assets/images/icons8-computadora-32.png" type="image/png">
 
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/carrito.css">
+</head>
+<body>
+    <header>
+        <h1>Nombre de tu Tienda</h1>
+        <nav id="nav">
+            <a href="carrito.html" id="contadorCarrito">Carrito: 0 productos</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Carrito</h2>
+        <div class="carrito-main">
+            <div class="carrito-productos">
+                <h3>Productos</h3>
+                <hr>
+                <div class="productos">
+                    <ul id="productosCarrito">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2762/2762885.png" alt="" width="100px" height="100px" style="margin-top: 15px;">
+                        <p style="margin-bottom: 15px;">No hay productos en el carrito</p>
+                    </ul>
+                </div>   
+            </div>
+            <div class="carrito-resumen">
+                <div>
+                    <h3>Resumen de compra</h3>
+                    <hr>
+                    <div class="bloque-item">
+                        <p>Productos</p>
+                        <p id="contadorResumen">0</p>
+                    </div>
+                    <div class="bloque-item" style="font-weight: 600;">
+                        <p>Total</p>
+                        <p id="total">0</p>
+                    </div>    
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <a class="btn-outline blue" href="productos.html">Seguir comprando</a>
+                    <button class="btn-outline red disable" style="margin-top: 0; margin-bottom: 0;" onclick="vaciarCarrito()" id="vaciar-carrito">Vaciar carrito</button>
+                    <a class="btn-outline green disable" id="btn-comprar" href="ticket.html">Comprar</a>    
+                </div>
+                
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Trabajo Práctico Integrador - Programación III</p>
+    </footer>
+    <script src="js/global.js"></script>
+    <script src="js/carrito.js"></script>
+</body>
+</html>
