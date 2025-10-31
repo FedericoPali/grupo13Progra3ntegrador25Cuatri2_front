@@ -8,7 +8,6 @@ function actualizarCarrito() {
     const btn_comprar = document.getElementById('btn-comprar');
     const btn_vaciar_carrito = document.getElementById('vaciar-carrito');
     productosCarrito.innerHTML = "";
-    let precioTotal = 0;
     if (carrito.length >= 1) {
         const carritoCant = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
         numCarrito.textContent = "Carrito: " + carritoCant + " productos";
@@ -16,7 +15,6 @@ function actualizarCarrito() {
         btn_comprar.classList.remove('disable');
         btn_vaciar_carrito.classList.remove('disable')
         carrito.forEach((p, i) => {
-            precioTotal = p.precio + precioTotal;
             total.textContent = "$" + carrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.cantidad, 0) + ".-";
             productosCarrito.innerHTML += `
             <li class="bloque-item">
@@ -111,3 +109,5 @@ botonCompra.addEventListener("click", () => {
 });
 
 cargarCarrito();
+
+console.log(carrito);

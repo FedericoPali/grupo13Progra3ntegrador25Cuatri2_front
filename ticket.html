@@ -14,9 +14,18 @@
     <main>
         <h2>Tu Ticket</h2>
         <div class="ticket">
+            <p id="usuario"></p>
+            <p id="fecha"></p>
             <ul id="productos-ticket">
-
             </ul>
+            <div class="ticket-total-class">
+                <p>TOTAL</p>
+                <p id="total-ticket">0.-</p>
+            </div>
+        </div>
+        <div class="ticket-buttons">
+            <button id="ticket-descargar" style="margin-top: 0; margin-bottom: 0;" onclick="imprimirTicket()">Descargar PDF </button>
+            <button id="ticket-salir" style="margin-top: 0; margin-bottom: 0;" onclick="volverIndex()">Salir</button>
         </div>
     </main>
     <footer id="footer-main">
