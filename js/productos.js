@@ -1,4 +1,4 @@
-// --- 1. OBTENEMOS ELEMENTOS DEL DOM ---
+// --- 1. OBTENER ELEMENTOS DEL DOM ---
 const listaProductos = document.getElementById("listaProductos");
 const barraBusqueda = document.getElementById("barraBusqueda");
 let url = "http://localhost:3000";
