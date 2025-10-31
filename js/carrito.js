@@ -8,7 +8,6 @@ function actualizarCarrito() {
     const btn_comprar = document.getElementById('btn-comprar');
     const btn_vaciar_carrito = document.getElementById('vaciar-carrito');
     productosCarrito.innerHTML = "";
-    let precioTotal = 0;
     if (carrito.length >= 1) {
         const carritoCant = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
         numCarrito.textContent = "Carrito: " + carritoCant + " productos";
@@ -16,7 +15,6 @@ function actualizarCarrito() {
         btn_comprar.classList.remove('disable');
         btn_vaciar_carrito.classList.remove('disable')
         carrito.forEach((p, i) => {
-            precioTotal = p.precio + precioTotal;
             total.textContent = "$" + carrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.cantidad, 0) + ".-";
             productosCarrito.innerHTML += `
             <li class="bloque-item">
@@ -31,7 +29,7 @@ function actualizarCarrito() {
                     <div class="opcionesCarrito">
                         <button class="btn-outline" onclick="eliminarProducto(${i}, false)">-</button>
                         <p>${p.cantidad}</p>
-                        <button class="btn-outline" onclick="agregarCarrito(${p.id})">+</button>
+                        <button class="btn-outline" onclick="sumarStockCarrito(${p.id_producto})">+</button>
                     </div>
                     <p class="subtotal movil">$${p.precio * p.cantidad}.-</p>
                 </div>
@@ -60,9 +58,9 @@ function cargarCarrito() {
     }
 }
 
-function agregarCarrito(id) {
-    let productoSeleccionado = frutasTienda.find(p => p.id == id);
-    const productoEnCarrito = carrito.find(producto => producto.id == id);
+function sumarStockCarrito(id) {
+    let productoSeleccionado = carrito.find(p => p.id_producto == id);
+    const productoEnCarrito = carrito.find(producto => producto.id_producto == id);
     if (productoEnCarrito) {
         productoEnCarrito.cantidad++;
     } else {
@@ -87,9 +85,29 @@ function eliminarProducto(i, b) {
 }
 
 function vaciarCarrito() {
-    carrito = [];
-    sessionStorage.removeItem("carrito");
-    actualizarCarrito();
+    const activo = document.getElementById('vaciar-carrito').classList;
+    if (!activo.contains('disable')) {
+        carrito = [];
+        sessionStorage.removeItem("carrito");
+        actualizarCarrito();
+        console.log('actualizado');
+    } else {
+        console.log('no hay nada para actualizar');
+    }
 }
 
+const botonCompra = document.getElementById("btn-comprar");
+
+botonCompra.addEventListener("click", () => { 
+    const activo = botonCompra.classList;
+    if (!activo.contains('disable')) {
+        window.location.href = "ticket.html";
+        console.log('avanza a ticket');
+    } else {
+        console.log('no avanza a ticket');
+    }
+});
+
 cargarCarrito();
+
+console.log(carrito);

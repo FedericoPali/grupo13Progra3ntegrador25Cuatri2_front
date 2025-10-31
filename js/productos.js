@@ -47,7 +47,7 @@ function mostrarProductos(arrayDeProductos) {
                 <img src="${producto.ruta_img}" alt="${producto.nombre}">
                 <h3>${producto.nombre}</h3>
                 <p>$${producto.precio}</p>
-                <button onclick="agregarACarrito(${producto.id})">Agregar al carrito</button>
+                <button onclick="agregarACarrito(${producto.id_producto})">Agregar al carrito</button>
             </div>
             `;
         }
@@ -60,15 +60,18 @@ function mostrarProductos(arrayDeProductos) {
  * Agrega un producto al carrito en sessionStorage o incrementa su cantidad si ya existe.
  * @param {number} id - El ID del producto a agregar.
  */
+
 function agregarACarrito(id) {
     // Obtenemos el carrito de sessionStorage o creamos un array vacío.
     let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
     
     // Buscamos el producto en nuestra lista de la tienda.
-    const productoEscogido = todosLosProductos.find(producto => producto.id == id);
+    const productoEscogido = todosLosProductos.find(producto => producto.id_producto == id);
     
     // Verificamos si el producto ya está en el carrito.
-    const productoEnCarrito = carrito.find(producto => producto.id == id);
+    const productoEnCarrito = carrito.find(producto => producto.id_producto == id);
+
+    console.log(productoEscogido);
 
     if (productoEnCarrito) {
         // Si ya está, solo aumentamos la cantidad.
