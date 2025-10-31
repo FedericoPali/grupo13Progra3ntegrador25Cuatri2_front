@@ -14,6 +14,11 @@ header {
     padding: 10px 20px;
 }
 
+main {
+    text-align: center; 
+    padding: 20px;
+}
+
 #nav {
     display: flex;
     gap: 20px;
@@ -34,9 +39,21 @@ header {
 }
 
 footer {
+    display: flex;
     text-align: center;
+    justify-content: space-between;
     padding: 20px;
     margin-top: 40px;
     background-color: #333;
     color: white;
+}
+
+.admin-login-button {
+    background-color: rgb(44, 110, 223);
+    color: white;
+    padding: 15px 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
 }

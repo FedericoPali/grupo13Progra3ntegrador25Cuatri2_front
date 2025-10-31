@@ -16,7 +16,7 @@ const alumnos = [
 ];
 
 function imprimirDatosAlumnos(listaAlumnos) {
-    const nav = document.getElementById("nav");
+    const footer = document.getElementById("footer-main");
 
     // Usamos .map() para crear un array con los nombres completos
     // y .join() para unirlos en un solo string
@@ -28,13 +28,22 @@ function imprimirDatosAlumnos(listaAlumnos) {
     const pAlumnos = document.createElement('p');
     pAlumnos.textContent = nombresCompletos;
 
-    if (nav) {
+    if (footer) {
         // Insertamos el <p> al principio del nav
-        nav.prepend(pAlumnos);
+        footer.prepend(pAlumnos);
     }
 }
 
+function agregarBotonAdmin(){
+    const footer = document.getElementById("footer-main");
+
+    if(!footer) return;
+
+    footer.innerHTML += `<a href="login.html" class="admin-login-button">Panel de Administrador</a>`;
+}
 // 3. Llamamos a la función al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     imprimirDatosAlumnos(alumnos);
+    agregarBotonAdmin();
 });
+

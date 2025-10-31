@@ -1,8 +1,36 @@
 // --- 1. OBTENER ELEMENTOS DEL DOM ---
 const listaProductos = document.getElementById("listaProductos");
 const barraBusqueda = document.getElementById("barraBusqueda");
-const botonNombre = document.getElementById("ordenarPorNombre");
-const botonPrecio = document.getElementById("ordenarPorPrecio");
+let url = "http://localhost:3000";
+
+let todosLosProductos = [];
+
+async function obtenerProductos() {
+    try {
+        let response = await fetch(`${url}/products`);
+
+        console.log(`Solicitud fetch GET a ${url}/products`);
+
+        let data = await response.json();
+
+        console.log(data);
+        todosLosProductos = data.payload;
+        console.log(todosLosProductos);
+
+        mostrarProductos(todosLosProductos);
+
+    } catch (error) {
+        console.error("Error obteniendo productos: ", error);
+        listaProductos.innerHTML = "<p>No se pudieron cargar los productos.</p>"
+    }
+}
+
+function init(){
+    obtenerProductos()
+};
+
+init();
+
 
 // --- 2. FUNCIONES PRINCIPALES ---
 
@@ -13,14 +41,17 @@ const botonPrecio = document.getElementById("ordenarPorPrecio");
 function mostrarProductos(arrayDeProductos) {
     let cartaProductos = "";
     arrayDeProductos.forEach(producto => {
-        cartaProductos += `
-        <div class="card-producto">
-            <img src="${producto.ruta_img}" alt="${producto.nombre}">
-            <h3>${producto.nombre}</h3>
-            <p>$${producto.precio}</p>
-            <button onclick="agregarACarrito(${producto.id})">Agregar al carrito</button>
-        </div>
-        `;
+        if(producto.activo === 1){
+            cartaProductos += `
+            <div class="card-producto">
+                <img src="${producto.ruta_img}" alt="${producto.nombre}">
+                <h3>${producto.nombre}</h3>
+                <p>$${producto.precio}</p>
+                <button onclick="agregarACarrito(${producto.id})">Agregar al carrito</button>
+            </div>
+            `;
+        }
+
     });
     listaProductos.innerHTML = cartaProductos;
 }
@@ -34,7 +65,7 @@ function agregarACarrito(id) {
     let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
     
     // Buscamos el producto en nuestra lista de la tienda.
-    const productoEscogido = frutasTienda.find(producto => producto.id == id);
+    const productoEscogido = todosLosProductos.find(producto => producto.id == id);
     
     // Verificamos si el producto ya está en el carrito.
     const productoEnCarrito = carrito.find(producto => producto.id == id);
@@ -64,29 +95,14 @@ function actualizarContadorCarrito() {
     contadorCarrito.textContent = `Carrito: ${totalProductos} productos`;
 }
 
-// --- 3. FUNCIONES DE ORDENAR Y FILTRAR ---
-function ordenarPorNombre() {
-    // Usamos [...frutasTienda] para que se cree una copia y no modificar el array original.
-    const arrayOrdenado = [...frutasTienda].sort((a, b) => a.nombre.localeCompare(b.nombre));
-    mostrarProductos(arrayOrdenado);
-}
-
-function ordenarPorPrecio() {
-    const arrayOrdenado = [...frutasTienda].sort((a, b) => a.precio - b.precio);
-    mostrarProductos(arrayOrdenado);
-}
-
 // --- 4. EVENTOS (LISTENERS) ---
 barraBusqueda.addEventListener("keyup", () => {
     const valorBusqueda = barraBusqueda.value.toLowerCase();
-    const productosFiltrados = frutasTienda.filter(producto => producto.nombre.includes(valorBusqueda));
+    const productosFiltrados = todosLosProductos.filter(producto => producto.nombre.toLowerCase().includes(valorBusqueda));
     mostrarProductos(productosFiltrados);
 });
 
-botonNombre.addEventListener("click", ordenarPorNombre);
-botonPrecio.addEventListener("click", ordenarPorPrecio);
 
 // --- 5. INICIALIZACIÓN ---
 // Estas funciones se ejecutan apenas carga la página de productos.
-mostrarProductos(frutasTienda);
 actualizarContadorCarrito();
