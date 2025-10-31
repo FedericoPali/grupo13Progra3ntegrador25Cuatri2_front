@@ -27,12 +27,15 @@ function actualizarCarrito() {
                         <button onclick="eliminarProducto(${i}, true)" class="btn-outline red" style="margin: 10px 0 0 0;">Eliminar del carrito</button>
                     </div>
                 </div>
-                <div class="opcionesCarrito">
-                    <button class="btn-outline" onclick="eliminarProducto(${i}, false)">-</button>
-                    <p>${p.cantidad}</p>
-                    <button class="btn-outline" onclick="agregarCarrito(${p.id})">+</button>
+                <div class="carritoResponsive">
+                    <div class="opcionesCarrito">
+                        <button class="btn-outline" onclick="eliminarProducto(${i}, false)">-</button>
+                        <p>${p.cantidad}</p>
+                        <button class="btn-outline" onclick="agregarCarrito(${p.id})">+</button>
+                    </div>
+                    <p class="subtotal movil">$${p.precio * p.cantidad}.-</p>
                 </div>
-                <p style="font-size: 18px; min-width: 100px;">$${p.precio * p.cantidad}.-</p>
+                <p class="subtotal pc">$${p.precio * p.cantidad}.-</p>
             </li>
             `;
         });    

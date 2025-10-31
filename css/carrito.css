@@ -37,7 +37,7 @@ main {
     flex-direction: column;
     background-color: white;
     width: 100%;
-    margin-right: 20px;
+    margin-right: 1%;
     border-radius: 8px;
     text-align: start;
 }
@@ -90,6 +90,22 @@ main {
     flex-direction: column;
     align-items: start;
     justify-content: center;
+}
+
+.carrito-productos .productos
+.bloque-item .subtotal {
+    font-size: 18px;
+}
+
+.carrito-productos .productos
+.bloque-item .subtotal.pc {
+    display: block;
+    min-width: 100px;
+}
+
+.carrito-productos .productos
+.bloque-item .subtotal.movil {
+    display: none;
 }
 
 .carrito-productos
@@ -151,7 +167,7 @@ button {
     justify-content: space-between;
     background-color: white;
     width: 30%;
-    margin-left: 20px;
+    margin-left: 1%;
     border-radius: 8px;
     text-align: start;
 }
@@ -221,4 +237,57 @@ button {
 .btn-outline.blue.disable,
 .btn-outline.blue:hover {
     background-color: rgb(61, 75, 201) !important;
+}
+
+@media screen and (max-width: 800px) {
+    .carrito-main {
+        display: block;
+        padding: 10px;
+    }
+
+    .carrito-main .carrito-productos,
+    .carrito-main .carrito-resumen {
+        margin: 0;
+        width: 100%;
+    }
+
+    .carrito-main .carrito-productos {
+        margin-bottom: 30px;
+    }
+
+    .carrito-main .carrito-resumen {
+        min-height: 280px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .carrito-productos .productos
+    .bloque-item {
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+    }
+
+    .carrito-productos .productos
+    .bloque-item .opcionesCarrito button {
+        padding: 5px;
+    }
+
+    .carrito-productos .productos
+    .carritoResponsive {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: end;
+    }
+
+    .carrito-productos .productos
+    .bloque-item .subtotal.pc {
+        display: none;
+    }
+
+    .carrito-productos .productos
+    .bloque-item .subtotal.movil {
+        display: block;
+    }
 }
