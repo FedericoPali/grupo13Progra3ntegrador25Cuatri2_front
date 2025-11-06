@@ -1,3 +1,62 @@
 main {
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px; /* Espaciado interno */
+    min-height: 65vh; /* Altura mínima para ocupar la pantalla */
+    text-align: center;
+}
+
+/* 2. Título de Bienvenida (H1 dentro de Main) */
+main h1 {
+    font-size: 2.5em; /* Tamaño grande */
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* 3. Contenedor del Formulario */
+.login-usuario {
+    background-color: #ffffff; 
+    padding: 30px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px; 
+}
+
+/* 4. Estilos para el Formulario */
+#form-bienvenida {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    gap: 20px; /* Espacio entre el label, input y botón */
+}
+
+#form-bienvenida label {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #555;
+}
+
+#form-bienvenida input[type="text"] {
+    padding: 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#form-bienvenida button {
+    padding: 12px;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#form-bienvenida button:hover {
+    background-color: #0056b3; 
 }
