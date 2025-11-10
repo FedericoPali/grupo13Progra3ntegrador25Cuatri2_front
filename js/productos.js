@@ -7,9 +7,9 @@ let todosLosProductos = [];
 
 async function obtenerProductos() {
     try {
-        let response = await fetch(`${url}/products`);
+        let response = await fetch(`${url}/api/products`);
 
-        console.log(`Solicitud fetch GET a ${url}/products`);
+        console.log(`Solicitud fetch GET a ${url}/api/products`);
 
         let data = await response.json();
 
