@@ -5,24 +5,40 @@ body {
     background-color: #f4f4f4;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-}
-
 main {
     text-align: center; 
     padding: 20px;
 }
 
+/* --- Estilos del Header Global --- */
+
+#header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px;
+    background-color: #4CAF50;
+    color: white;
+}
+    
+/* Contenedor para la nueva imagen-logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+    
+/* Estilos para la nueva imagen-logo */
+#header-main img {
+    height: auto;
+    width: 300px; 
+}
+
 #nav {
     display: flex;
-    gap: 20px;
+    flex-grow: 1;           
+    justify-content: flex-end; 
     align-items: center;
+    gap: 20px;
 }
 
 #nav p, #nav a {
