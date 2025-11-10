@@ -3,7 +3,6 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px; /* Espaciado interno */
     min-height: 65vh; /* Altura mínima para ocupar la pantalla */
     text-align: center;
 }
@@ -28,8 +27,8 @@ main h1 {
 /* 4. Estilos para el Formulario */
 #form-bienvenida {
     display: flex;
-    flex-direction: column; /* Apila los elementos verticalmente */
-    gap: 20px; /* Espacio entre el label, input y botón */
+    flex-direction: column; 
+    gap: 20px; 
 }
 
 #form-bienvenida label {
