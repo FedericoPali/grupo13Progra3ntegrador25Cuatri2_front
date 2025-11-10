@@ -39,11 +39,28 @@ init();
  * @param {Array} arrayDeProductos - El array de productos a mostrar.
  */
 function mostrarProductos(arrayDeProductos) {
-    let cartaProductos = "";
+    // --- llamamos e importamos los contenedores ---
+    const containerProcesadores = document.getElementById("procesadores-cards");
+    const containerGraficas = document.getElementById("graficas-cards");
+
+    let arrayGraficas = [];
+    let arrayProcesadores = [];
+    
+    // --- 2. Clasificamos ---
     arrayDeProductos.forEach(producto => {
-        if(producto.activo === 1){
-            cartaProductos += `
-            <div class="card-producto">
+        if (producto.tipo === "procesador") {
+            arrayProcesadores.push(producto);
+        } else {
+            arrayGraficas.push(producto);
+        }
+    });
+
+    // --- 3. Renderizamos procesadores ---
+    let cartaProcesadores = ""; // String solo para procesadores
+    arrayProcesadores.forEach(producto => {
+        if (producto.activo === 1) {
+            cartaProcesadores += `
+            <div class="card-producto card-producto-procesadores">
                 <img src="${producto.ruta_img}" alt="${producto.nombre}">
                 <h3>${producto.nombre}</h3>
                 <p>$${producto.precio}</p>
@@ -51,9 +68,26 @@ function mostrarProductos(arrayDeProductos) {
             </div>
             `;
         }
-
     });
-    listaProductos.innerHTML = cartaProductos;
+    // Inyectamos el string en el contenedor de procesadores
+    containerProcesadores.innerHTML = cartaProcesadores;
+
+    // --- 4. Renderizamos gráficas ---
+    let cartaGraficas = ""; // String solo para gráficas
+    arrayGraficas.forEach(producto => {
+        if (producto.activo === 1) {
+            cartaGraficas += `
+            <div class="card-producto card-producto-graficas">
+                <img src="${producto.ruta_img}" alt="${producto.nombre}">
+                <h3>${producto.nombre}</h3>
+                <p>$${producto.precio}</p>
+                <button onclick="agregarACarrito(${producto.id_producto})">Agregar al carrito</button>
+            </div>
+            `;
+        }
+    });
+    // Inyectamos el string en el contenedor de gráficas
+    containerGraficas.innerHTML = cartaGraficas;
 }
 
 /**
