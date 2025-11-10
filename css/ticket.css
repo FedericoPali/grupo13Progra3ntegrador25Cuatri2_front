@@ -1,5 +1,137 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 70vh; /* Empuja el footer hacia abajo */
+}
+
+/* --- 2. El Contenedor del Ticket (.ticket) --- */
+/* Esta es la "hoja" blanca del recibo */
+.ticket {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px;
+    padding: 25px;
+    box-sizing: border-box; /* para evitar que el padding afecte el ancho */
+}
+
+.ticket h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Info de Cliente y Fecha */
+.ticket #usuario,
+.ticket #fecha {
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+    margin: 5px 0;
+}
+
+/* --- 3. Cada Fila de Producto (tu clase .ticket-format) --- */
+/* Esto alinea cada producto */
 .ticket-format {
     display: flex;
-    justify-content: space-around;
-    border-bottom: 1px dashed black;
+    justify-content: space-between; /* Manda el precio a la derecha */
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc; /* linea cortada divisoria entre cada producto*/
+}
+
+.ticket-format p {
+    margin: 0; 
+}
+
+/* El primer <p> (nombre) que ocupe el espacio */
+.ticket-format p:first-child {
+    flex-grow: 1;
+    text-align: left;
+}
+
+/* Los otros <p> (cantidad y precio) */
+.ticket-format p:not(:first-child) {
+    width: 60px; /* Ancho fijo para alinear en columnas */
+    text-align: right;
+}
+
+/* --- 5. Sección del Total --- */
+.ticket-total-class {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid #333; /* linea divisoria para el total */
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/* --- 6. Contenedor de Botones --- */
+.ticket-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 200px; /* Espacio entre botones */
+    margin-top: 25px;
+    width: 100%;
+    max-width: 450px; /* Para que coincida con el ancho del ticket */
+}
+
+/* Estilos para los botones */
+.ticket-buttons button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#ticket-descargar {
+    background-color: #28a745; 
+    color: white;
+}
+#ticket-descargar:hover {
+    background-color: #218838;
+}
+
+#ticket-salir {
+    background-color: #f6071f; 
+    color: white;
+}
+#ticket-salir:hover {
+    background-color: #7c0d18;
+}
+
+/* medidas responsive */
+
+@media (max-width: 480px) {
+
+    /* Hacemos que el padding principal sea más chico */
+    main {
+        padding: 20px 10px;
+    }
+
+    /* Reducimos el padding interno del ticket */
+    .ticket {
+        padding: 20px;
+    }
+
+    /* Hacemos que los botones se apilen uno encima del otro */
+    .ticket-buttons {
+        flex-direction: column;
+        gap: 10px; /* Reducimos el espacio entre ellos */
+    }
+
+    /* Opcional: Achicamos un poco los textos para pantallas angostas */
+    .ticket h2 {
+        font-size: 1.5em;
+    }
+
+    .ticket-total-class {
+        font-size: 1.2em;
+    }
 }
