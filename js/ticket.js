@@ -1,5 +1,5 @@
-let productosCompra = JSON.parse(sessionStorage.getItem("carrito"));
-let nombreComprador = sessionStorage.getItem("nombreUsuario");
+let productosCompra = JSON.parse(sessionStorage.getItem("carrito")) || []; // lo que va dsp de || es un default en caso de que carrito no traiga nada
+let nombreComprador = sessionStorage.getItem("nombreUsuario") || "Cliente"; // lo que va dsp de || es un default en caso de que nombreUsuario no traiga nada
 console.log(nombreComprador);
 
 console.log(productosCompra);
@@ -41,5 +41,15 @@ botonSalir.addEventListener("click", () => {
 
 // TO DO: agregar funcionalidad para descargar el ticket en formato PDF.
 botonDescargar.addEventListener("click", () => {
-    
+    const elementoParaImprimir = document.querySelector(".ticket");
+
+    const opciones = {
+        margin: 15,
+        filename: 'ticket_neocompute.pdf',
+        image: {type: 'jpeg', quality: 0.98},
+        html2canvas: {scale: 2},
+        jsPDF: {unit: 'mm', format: 'a4', orientation: 'portrait'}
+    };
+
+    html2pdf().set(opciones).from(elementoParaImprimir).save();
 });
