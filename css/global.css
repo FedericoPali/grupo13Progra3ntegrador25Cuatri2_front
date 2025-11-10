@@ -5,6 +5,11 @@ body {
     background-color: #f4f4f4;
 }
 
+main {
+    text-align: center; 
+    padding: 20px;
+}
+
 /* --- Estilos del Header Global --- */
 
 #header-main {
@@ -16,30 +21,16 @@ body {
     color: white;
 }
     
-/* El nuevo contenedor de logo y título */
+/* Contenedor para la nueva imagen-logo */
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 15px;
 }
     
-/* Estilos para el logo dentro del header */
+/* Estilos para la nueva imagen-logo */
 #header-main img {
-    height: 100px;
-    width: auto;
-    transform: scale(1.4); /*agranda la imagen visualmente en un 40% sin modificar el layout*/
-    transform-origin: left center;
-}
-    
-/* Estilos para el H1 dentro del header */
-#header-main h1 {
-    font-size: 1.8em;
-    margin: 0;
-}
-
-main {
-    text-align: center; 
-    padding: 20px;
+    height: auto;
+    width: 300px; 
 }
 
 #nav {
