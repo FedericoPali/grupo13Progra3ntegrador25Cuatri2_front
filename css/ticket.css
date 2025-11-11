@@ -46,6 +46,12 @@ main {
     margin: 5px 0;
 }
 
+#productos-ticket {
+    list-style: none;
+    padding: 0;       
+    margin: 20px 0;   
+}
+
 /* --- 3. Cada Fila de Producto (tu clase .ticket-format) --- */
 /* Esto alinea cada producto */
 .ticket-format {
@@ -116,6 +122,17 @@ main {
 }
 #ticket-salir:hover {
     background-color: #7c0d18;
+}
+
+
+/* Tema Oscuro */
+
+.dark_theme.disable .ticket {
+    background-color: #333;
+}
+
+.dark_theme.disable p#usuario, .dark_theme.disable p#fecha , .dark_theme.disable p#nro_ticket{
+    color: white;
 }
 
 /* medidas responsive */
