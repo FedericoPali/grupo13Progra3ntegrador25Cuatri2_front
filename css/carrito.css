@@ -241,6 +241,26 @@ button {
     background-color: rgb(61, 75, 201) !important;
 }
 
+/* Tema Oscuro */
+
+.dark_theme.disable .carrito-productos {
+    background-color: #333;
+}
+
+.dark_theme.disable .carrito-resumen {
+    background-color: #333;
+}
+
+/* botones de - y + */
+.dark_theme.disable .carrito-productos
+.productos
+.bloque-item
+.opcionesCarrito
+button {
+    color: white
+} 
+
+/* Medidas Responsive */
 @media screen and (max-width: 800px) {
     .carrito-main {
         display: block;
