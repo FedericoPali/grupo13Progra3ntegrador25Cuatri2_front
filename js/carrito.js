@@ -42,7 +42,7 @@ function actualizarCarrito() {
             <img src="https://cdn-icons-png.flaticon.com/512/2762/2762885.png" alt="" width="100px" height="100px" style="margin-top: 15px;">
             <p style="margin-bottom: 15px;">No hay productos en el carrito</p>
         `;
-        numCarrito.textContent = "Carrito: 0 productos";
+        numCarrito.textContent = "0";
         total.textContent = "$0.-";
         contadorResumen.textContent = "0";
         btn_comprar.classList.add('disable');
@@ -98,14 +98,16 @@ function vaciarCarrito() {
 
 const botonCompra = document.getElementById("btn-comprar");
 
-botonCompra.addEventListener("click", () => { 
+botonCompra.addEventListener("click", () => {
     const activo = botonCompra.classList;
-    if (!activo.contains('disable')) {
-        window.location.href = "ticket.html";
-        console.log('avanza a ticket');
+    if (!activo.contains('disable')) {   
+        if (confirm('¿Desea finalizar la compra?')) {
+            window.location.href = "ticket.html";
+            console.log('avanza a ticket');
+        }
     } else {
         console.log('no avanza a ticket');
-    }
+    } 
 });
 
 document.addEventListener('DOMContentLoaded', () => {

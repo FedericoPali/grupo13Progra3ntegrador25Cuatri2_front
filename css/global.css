@@ -17,6 +17,7 @@ body {
 main {
     text-align: center; 
     padding: 20px;
+    min-height: 70vh; /* Empuja el footer hacia abajo */
 }
 
 /* --- Estilos del Header Global --- */
