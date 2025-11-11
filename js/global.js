@@ -24,12 +24,27 @@ function imprimirDatosAlumnos(listaAlumnos) {
 }
 
 function agregarBotonAdmin(){
-    const footer = document.getElementById("footer-main");
+    const nav = document.getElementById("nav");
 
-    if(!footer) return;
+    if(!nav) return;
 
-    footer.innerHTML += `<a href="login.html" class="admin-login-button">Panel de Administrador</a>`;
+    nav.innerHTML += `
+        <button href="index.html" id="nav_home" onclick="volverIndex()"><span class="material-symbols-outlined">home</span></button>
+        <a href="productos.html" id="nav_productos"><span class="material-symbols-outlined">local_mall</span></a>
+        <a href="carrito.html" id="nav_carrito"><span class="material-symbols-outlined">shopping_cart</span><span class="badge" id="contadorCarrito">0</span></a>
+        <a href="login.html" id="nav_login"><span class="material-symbols-outlined">admin_panel_settings</span></a>
+        <button id="nav_tema"><span class="material-symbols-outlined" id="icon_light">light_mode</span><span class="material-symbols-outlined" id="icon_dark">dark_mode</span></button>
+    `;
 }
+
+function volverIndex() {
+    if (confirm('¿Seguro que quieres regresar a la página principal?\nTu carrito se borrará y la sesión actual se cerrará.')) {
+        window.location.href = "index.html";
+        sessionStorage.removeItem("carrito");
+        sessionStorage.removeItem("nombreUsuario");
+    }
+}
+
 // 3. Llamamos a la función al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     imprimirDatosAlumnos(alumnos);

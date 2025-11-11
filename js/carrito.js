@@ -10,7 +10,7 @@ function actualizarCarrito() {
     productosCarrito.innerHTML = "";
     if (carrito.length >= 1) {
         const carritoCant = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-        numCarrito.textContent = "Carrito: " + carritoCant + " productos";
+        numCarrito.textContent = carritoCant;
         contadorResumen.textContent = carritoCant;
         btn_comprar.classList.remove('disable');
         btn_vaciar_carrito.classList.remove('disable')
@@ -108,6 +108,12 @@ botonCompra.addEventListener("click", () => {
     }
 });
 
-cargarCarrito();
+document.addEventListener('DOMContentLoaded', () => {
+    if (!sessionStorage.getItem("nombreUsuario")) {
+        alert('Necesitas tener un nombre de usuario para acceder a esta página.');
+        window.location.href = "index.html";
+    }
+    cargarCarrito();
+})
 
 console.log(carrito);
