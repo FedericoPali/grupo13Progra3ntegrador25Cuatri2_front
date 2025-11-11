@@ -1,3 +1,14 @@
+#barraBusqueda {
+    padding: 5px 10px;
+    background-color: rgb(27, 21, 147);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#barraBusqueda::placeholder {
+    color: #F65916;
+}
+
 .filtros button {
     padding: 8px 15px;
     margin: 5px;
@@ -94,6 +105,18 @@
     background-color: #388e3c;
 }
 
+/* Cambios de colores con tema oscuro */
+
+.dark_theme.disable .categoria-columna{
+    background-color: #333;
+}
+
+.dark_theme.disable .card-producto {
+    background-color: gray;
+}
+
+
+/* Media Responsive */
 @media (max-width: 768px) {
 
     .categorias-container {
