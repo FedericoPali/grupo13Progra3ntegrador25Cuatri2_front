@@ -33,7 +33,7 @@ function agregarBotonAdmin(){
         <a href="productos.html" id="nav_productos"><span class="material-symbols-outlined">local_mall</span></a>
         <a href="carrito.html" id="nav_carrito"><span class="material-symbols-outlined">shopping_cart</span><span class="badge" id="contadorCarrito">0</span></a>
         <a href="login.html" id="nav_login"><span class="material-symbols-outlined">admin_panel_settings</span></a>
-        <button id="nav_tema"><span class="material-symbols-outlined" id="icon_light">light_mode</span><span class="material-symbols-outlined" id="icon_dark">dark_mode</span></button>
+        <button id="nav_tema" onclick="cambiarTema()"><span class="material-symbols-outlined" id="icon_light">light_mode</span><span class="material-symbols-outlined" id="icon_dark">dark_mode</span></button>
     `;
 }
 
@@ -47,7 +47,37 @@ function volverIndex() {
 
 // 3. Llamamos a la función al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
+
+    const temaGuardado = localStorage.getItem('tema');
+
+    if(temaGuardado === 'oscuro') {
+        document.body.classList.add('disable');
+    }
+
     imprimirDatosAlumnos(alumnos);
     agregarBotonAdmin();
 });
 
+
+function cambiarTema(){
+    const body = document.body
+    const claseBody = body.classList;
+    
+    if(confirm("Quiere cambiar el tema?")){
+        console.log(claseBody);
+        
+        if(claseBody.contains('disable')){
+            body.classList.remove("disable");
+            console.log(claseBody);
+
+            localStorage.setItem('tema', 'claro')
+        
+        } else {
+            body.classList.add('disable');
+            console.log(claseBody);
+
+            localStorage.setItem('tema', 'oscuro')
+            
+        }
+    }
+}
