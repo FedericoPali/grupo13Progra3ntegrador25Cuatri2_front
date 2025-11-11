@@ -5,6 +5,12 @@ main {
     min-height: 70vh; /* Empuja el footer hacia abajo */
 }
 
+#nav button#nav_home,
+#nav a#nav_productos,
+#nav a#nav_carrito {
+    display: none; /* para evitar mostrarlos en esta página */
+}
+
 /* --- 2. El Contenedor del Ticket (.ticket) --- */
 /* Esta es la "hoja" blanca del recibo */
 .ticket {
@@ -26,8 +32,15 @@ main {
 }
 
 /* Info de Cliente y Fecha */
+
+.ticket .bloque {
+    display: flex;
+    justify-content: space-between;
+}
+
 .ticket #usuario,
-.ticket #fecha {
+.ticket #fecha,
+.ticket #nro_ticket {
     font-size: 0.9em;
     color: #555;
     text-align: center;

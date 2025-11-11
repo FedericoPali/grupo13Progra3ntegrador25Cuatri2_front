@@ -7,6 +7,12 @@ main {
     text-align: center;
 }
 
+#nav button#nav_home,
+#nav a#nav_productos,
+#nav a#nav_carrito {
+    display: none; /* para evitar mostrarlos en esta página */
+}
+
 /* 2. Título de Bienvenida (H1 dentro de Main) */
 main h1 {
     font-size: 2.5em; /* Tamaño grande */

@@ -10,9 +10,11 @@ function mostrarTicket(){
     const totalTicket = document.getElementById("total-ticket");
     const usuario = document.getElementById("usuario");
     const fecha = document.getElementById("fecha");
+    const nro_ticket = document.getElementById("nro_ticket");
 
-    fecha.textContent = new Date().toLocaleDateString();
+    fecha.textContent = 'Fecha: ' + new Date().toLocaleDateString();
     usuario.textContent = `Cliente: ${nombreComprador}`;
+    nro_ticket.textContent = 'Nro. de ticket: ' + Math.floor(Math.random() * 10000000000); //Genera un numero entero aleatorio de 10 digitos
     productosCompra.forEach(producto => {
         totalTicket.textContent = "$" + productosCompra.reduce((acumulador, producto) => acumulador + producto.precio * producto.cantidad, 0) + ".-";
         ticketImpreso.innerHTML += `
@@ -53,3 +55,11 @@ botonDescargar.addEventListener("click", () => {
 
     html2pdf().set(opciones).from(elementoParaImprimir).save();
 });
+
+// Estas funciones se ejecutan apenas carga la página.
+document.addEventListener('DOMContentLoaded', () => {
+    if (!sessionStorage.getItem("nombreUsuario")) {
+        alert('Necesitas tener un nombre de usuario para acceder a esta página.');
+        window.location.href = "index.html";
+    }
+})

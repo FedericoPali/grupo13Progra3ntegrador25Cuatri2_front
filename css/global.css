@@ -1,3 +1,12 @@
+.material-symbols-outlined {
+    user-select: none;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 250,
+    'GRAD' 0,
+    'opsz' 24
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -16,8 +25,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 20px;
-    background-color: #4CAF50;
+    padding: 15px;
+    background-color: #0b009d;
     color: white;
 }
     
@@ -34,18 +43,70 @@ main {
 }
 
 #nav {
-    display: flex;
-    flex-grow: 1;           
+    display: flex;          
     justify-content: flex-end; 
     align-items: center;
     gap: 20px;
 }
 
-#nav p, #nav a {
+#nav .material-symbols-outlined {
+    font-size: 40px;
+    color: #F65916;
+}
+
+#nav a .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #F65916;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nav a, button {
+    display: flex;
+    position: relative;
+    padding: 10px;
     margin: 0;
     font-weight: bold;
     color: white;
-    text-decoration: none;
+    text-decoration: none;background-color: transparent;
+    border: 0;   
+}
+
+#nav button:hover {
+    cursor: pointer;
+}
+
+#nav button#nav_tema {
+    border-radius: 8px;
+}
+
+#nav button#nav_tema #icon_light {
+    display: block;
+}
+
+#nav button#nav_tema #icon_dark {
+    display: none;
+}
+
+.dark_theme #nav button#nav_tema #icon_light {
+    display: none !important;
+}
+
+.dark_theme #nav button#nav_tema #icon_dark {
+    display: block !important;
+}
+
+#nav button#nav_tema:hover {
+    background-color: #050051;
 }
 
 #barraBusqueda {
@@ -72,4 +133,14 @@ footer {
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
+}
+
+@media screen and (max-width: 900px) {
+    #header-main {
+        flex-direction: column;
+        gap: 20px;
+    }
+    #nav .material-symbols-outlined {
+        font-size: 30px;
+    }
 }

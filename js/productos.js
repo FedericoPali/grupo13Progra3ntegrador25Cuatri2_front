@@ -129,7 +129,7 @@ function actualizarContadorCarrito() {
     const carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
     const totalProductos = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
     const contadorCarrito = document.getElementById("contadorCarrito");
-    contadorCarrito.textContent = `Carrito: ${totalProductos} productos`;
+    contadorCarrito.textContent = totalProductos;
 }
 
 // --- 4. EVENTOS (LISTENERS) ---
@@ -142,4 +142,10 @@ barraBusqueda.addEventListener("keyup", () => {
 
 // --- 5. INICIALIZACIÓN ---
 // Estas funciones se ejecutan apenas carga la página de productos.
-actualizarContadorCarrito();
+document.addEventListener('DOMContentLoaded', () => {
+    if (!sessionStorage.getItem("nombreUsuario")) {
+        alert('Necesitas tener un nombre de usuario para acceder a esta página.');
+        window.location.href = "index.html";
+    }
+    actualizarContadorCarrito();
+})
