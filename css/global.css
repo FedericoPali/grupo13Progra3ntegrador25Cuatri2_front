@@ -7,13 +7,6 @@
     'opsz' 24
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
 main {
     text-align: center; 
     padding: 20px;
@@ -98,11 +91,11 @@ main {
     display: none;
 }
 
-.dark_theme #nav button#nav_tema #icon_light {
+.dark_theme.disable #nav button#nav_tema #icon_light {
     display: none !important;
 }
 
-.dark_theme #nav button#nav_tema #icon_dark {
+.dark_theme.disable #nav button#nav_tema #icon_dark {
     display: block !important;
 }
 
@@ -144,4 +137,25 @@ footer {
     #nav .material-symbols-outlined {
         font-size: 30px;
     }
+}
+
+/* --- Tema Claro (Default) --- */
+.dark_theme {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.dark_theme h1, .dark_theme h2, .dark_theme h3, .dark_theme h4, .dark_theme h5, .dark_theme h6, .dark_theme p {
+    color: black;
+}
+
+/* --- Tema Oscuro (Cuando se agrega la clase 'disable') --- */
+.dark_theme.disable {
+    background-color: black;
+}
+
+.dark_theme.disable h1, .dark_theme.disable h2, .dark_theme.disable h3, .dark_theme.disable h4, .dark_theme.disable h5, .dark_theme.disable h6, .dark_theme.disable p {
+    color: white;
 }
