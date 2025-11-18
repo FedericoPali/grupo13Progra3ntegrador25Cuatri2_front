@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const temaGuardado = localStorage.getItem('tema');
 
     if(temaGuardado === 'oscuro') {
-        document.body.classList.add('disable');
+        document.body.classList.add('enable');
     }
 
     imprimirDatosAlumnos(alumnos);
@@ -66,14 +66,14 @@ function cambiarTema(){
     if(confirm("Quiere cambiar el tema?")){
         console.log(claseBody);
         
-        if(claseBody.contains('disable')){
-            body.classList.remove("disable");
+        if(claseBody.contains('enable')){
+            body.classList.remove("enable");
             console.log(claseBody);
 
             localStorage.setItem('tema', 'claro')
         
         } else {
-            body.classList.add('disable');
+            body.classList.add('enable');
             console.log(claseBody);
 
             localStorage.setItem('tema', 'oscuro')

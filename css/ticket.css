@@ -127,11 +127,11 @@ main {
 
 /* Tema Oscuro */
 
-.dark_theme.disable .ticket {
+.dark_theme.enable .ticket {
     background-color: #333;
 }
 
-.dark_theme.disable p#usuario, .dark_theme.disable p#fecha , .dark_theme.disable p#nro_ticket{
+.dark_theme.enable p#usuario, .dark_theme.enable p#fecha , .dark_theme.enable p#nro_ticket{
     color: white;
 }
 

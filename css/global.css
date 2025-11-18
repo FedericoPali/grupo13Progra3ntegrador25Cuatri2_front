@@ -91,11 +91,11 @@ main {
     display: none;
 }
 
-.dark_theme.disable #nav button#nav_tema #icon_light {
+.dark_theme.enable #nav button#nav_tema #icon_light {
     display: none !important;
 }
 
-.dark_theme.disable #nav button#nav_tema #icon_dark {
+.dark_theme.enable #nav button#nav_tema #icon_dark {
     display: block !important;
 }
 
@@ -146,10 +146,10 @@ footer {
 }
 
 /* --- Tema Oscuro (Cuando se agrega la clase 'disable') --- */
-.dark_theme.disable {
+.dark_theme.enable {
     background-color: rgb(20, 19, 19);
 }
 
-.dark_theme.disable h1, .dark_theme.disable h2, .dark_theme.disable h3, .dark_theme.disable h4, .dark_theme.disable h5, .dark_theme.disable h6, .dark_theme.disable p {
+.dark_theme.enable h1, .dark_theme.enable h2, .dark_theme.enable h3, .dark_theme.enable h4, .dark_theme.enable h5, .dark_theme.enable h6, .dark_theme.enable p {
     color: white;
 }

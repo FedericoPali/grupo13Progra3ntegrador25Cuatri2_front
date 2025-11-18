@@ -107,11 +107,11 @@
 
 /* Cambios de colores con tema oscuro */
 
-.dark_theme.disable .categoria-columna{
+.dark_theme.enable .categoria-columna{
     background-color: #333;
 }
 
-.dark_theme.disable .card-producto {
+.dark_theme.enable .card-producto {
     background-color: gray;
 }
 

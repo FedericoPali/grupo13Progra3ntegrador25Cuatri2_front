@@ -243,16 +243,16 @@ button {
 
 /* Tema Oscuro */
 
-.dark_theme.disable .carrito-productos {
+.dark_theme.enable .carrito-productos {
     background-color: #333;
 }
 
-.dark_theme.disable .carrito-resumen {
+.dark_theme.enable .carrito-resumen {
     background-color: #333;
 }
 
 /* botones de - y + */
-.dark_theme.disable .carrito-productos
+.dark_theme.enable .carrito-productos
 .productos
 .bloque-item
 .opcionesCarrito
