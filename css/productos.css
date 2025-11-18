@@ -3,6 +3,7 @@
     background-color: rgb(27, 21, 147);
     border: 1px solid #ccc;
     border-radius: 4px;
+    color: #F65916;
 }
 
 #barraBusqueda::placeholder {
