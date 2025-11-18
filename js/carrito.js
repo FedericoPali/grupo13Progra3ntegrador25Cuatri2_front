@@ -1,4 +1,5 @@
 let carrito = [];
+let url = "http://localhost:3000";
 
 function actualizarCarrito() {
     const productosCarrito = document.getElementById("productosCarrito");
@@ -104,15 +105,56 @@ function vaciarCarrito() {
 
 const botonCompra = document.getElementById("btn-comprar");
 
-botonCompra.addEventListener("click", () => {
+botonCompra.addEventListener("click", async () => {
     const activo = botonCompra.classList;
     if (!activo.contains('disable')) {   
         if (confirm('¿Desea finalizar la compra?')) {
-            window.location.href = "ticket.html";
-            console.log('avanza a ticket');
-        }
+
+            const nombreUsuario = sessionStorage.getItem("nombreUsuario");
+
+            const totalCalculado = calcularTotalCarrito();
+
+            const detallesVenta = {
+                nombre_usuario: nombreUsuario,
+                precio_total: totalCalculado,
+                productos: carrito
+            }
+            try{
+                // deshabilitamos el boton para evitar doble clics
+                botonCompra.textContent = "Procesando...";
+                botonCompra.classList.add('disable');
+
+                const response = await fetch(`${url}/api/sales`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(detallesVenta)
+                });
+                const data = await response.json() // lee la respuesta del servidor
+
+                if(response.ok) {
+                    console.log("Venta registrada: ", data);
+                    window.location.href = "ticket.html";
+                    
+                } else {
+                    console.error("Error del servidor: ", data); // muestra el mensaje de error que enviamos desde el backend
+                    alert(`Hubo un problema: ${data.message}`); // alerta para el usuario
+
+                    botonCompra.textContent= "Comprar";
+                    botonCompra.classList.remove('disable');
+                }
+            } catch (error) {
+                console.error("Error de red: ", error); // en caso de que no este el servidor levantado
+                alert("No se pudo conectar con el servidor");
+
+                botonCompra.textContent = "Comprar";
+                botonCompra.classList.remove('disable');
+            }
+
+        } 
     } else {
-        console.log('no avanza a ticket');
+        console.log('El carrito esta vacio, no puede avanzar');
     } 
 });
 
