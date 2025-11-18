@@ -15,7 +15,7 @@ function actualizarCarrito() {
         btn_comprar.classList.remove('disable');
         btn_vaciar_carrito.classList.remove('disable')
         carrito.forEach((p, i) => {
-            total.textContent = "$" + carrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.cantidad, 0) + ".-";
+            total.textContent = "$" + calcularTotalCarrito() + ".-";
             productosCarrito.innerHTML += `
             <li class="bloque-item">
                 <div class="img-nombre">
@@ -48,6 +48,12 @@ function actualizarCarrito() {
         btn_comprar.classList.add('disable');
         btn_vaciar_carrito.classList.add('disable');
     }   
+}
+
+function calcularTotalCarrito() {
+    return carrito.reduce((acumulador, producto) => {
+        return acumulador + (producto.precio * producto.cantidad);
+    }, 0);
 }
 
 function cargarCarrito() {
