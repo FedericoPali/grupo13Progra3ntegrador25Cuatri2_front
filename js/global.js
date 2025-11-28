@@ -32,7 +32,6 @@ function agregarBotonAdmin(){
         <button href="index.html" id="nav_home" onclick="volverIndex()"><span class="material-symbols-outlined">home</span></button>
         <a href="productos.html" id="nav_productos"><span class="material-symbols-outlined">local_mall</span></a>
         <a href="carrito.html" id="nav_carrito"><span class="material-symbols-outlined">shopping_cart</span><span class="badge" id="contadorCarrito">0</span></a>
-        <a href="login.html" id="nav_login"><span class="material-symbols-outlined">admin_panel_settings</span></a>
         <button id="nav_tema" onclick="cambiarTema()"><span class="material-symbols-outlined" id="icon_light">light_mode</span><span class="material-symbols-outlined" id="icon_dark">dark_mode</span></button>
     `;
 }
