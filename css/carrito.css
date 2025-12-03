@@ -36,6 +36,7 @@ main {
     display: flex;
     flex-direction: column;
     background-color: white;
+    border: 1px solid #ccc;
     width: 100%;
     margin-right: 1%;
     border-radius: 8px;
@@ -166,6 +167,7 @@ button {
     flex-direction: column;
     justify-content: space-between;
     background-color: white;
+    border: 1px solid #ccc;
     width: 30%;
     margin-left: 1%;
     border-radius: 8px;
@@ -200,7 +202,7 @@ button {
 }
 
 .btn-outline.disable {
-    background-color: rgb(62, 62, 62);
+    background-color: gainsboro;
     cursor: not-allowed;
     color: rgb(47, 47, 47);
 }
@@ -243,16 +245,30 @@ button {
 
 /* Tema Oscuro */
 
-.dark_theme.enable .carrito-productos {
-    background-color: #333;
+.dark_theme .carrito-productos {
+    background-color: #1A1C1E;
+    border-color: #3A3C42;
 }
 
-.dark_theme.enable .carrito-resumen {
-    background-color: #333;
+.dark_theme .carrito-resumen {
+    background-color: #1A1C1E;
+    border-color: #3A3C42;
+}
+
+.dark_theme .carrito-main hr {
+    border-color: #2D2F33;
+}
+
+.dark_theme .carrito-productos .productos .bloque-item {
+    border-color: #2D2F33;
+}
+
+.dark_theme .btn-outline.disable, .dark_theme .btn-outline:hover {
+    background-color: #313131;
 }
 
 /* botones de - y + */
-.dark_theme.enable .carrito-productos
+.dark_theme .carrito-productos
 .productos
 .bloque-item
 .opcionesCarrito

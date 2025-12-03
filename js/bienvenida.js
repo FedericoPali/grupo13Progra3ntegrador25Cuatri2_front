@@ -15,6 +15,6 @@ formBienvenida.addEventListener("submit", async (event) =>{
 
         window.location.href = "productos.html"; // redirige la ventana hacia el html de productos luego de submitear el nombre de usuario
     } else {
-        alert("Ingresar un nombre valido para continuar");
+        mostrar_modal(type="alert", func=null, message="Ingresar un nombre valido para continuar");
     }
 });

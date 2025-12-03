@@ -21,7 +21,7 @@ function mostrarTicket(){
             <li class="ticket-format">
                 <p>${producto.nombre}</p>
                 <p>x${producto.cantidad}</p>
-                <p>${producto.precio * producto.cantidad}</p>
+                <p>$${producto.precio * producto.cantidad}</p>
             </li>
         `
     } )
@@ -41,7 +41,6 @@ botonSalir.addEventListener("click", () => {
     console.log("saliendo...");
 });
 
-// TO DO: agregar funcionalidad para descargar el ticket en formato PDF.
 botonDescargar.addEventListener("click", () => {
     const elementoParaImprimir = document.querySelector(".ticket");
 
@@ -53,13 +52,11 @@ botonDescargar.addEventListener("click", () => {
         jsPDF: {unit: 'mm', format: 'a4', orientation: 'portrait'}
     };
 
-    html2pdf().set(opciones).from(elementoParaImprimir).save();
+    html2pdf().set(opciones).from(elementoParaImprimir).save().then(() => {
+        mostrar_modal(type="alert", func=null, message="Tu ticket ya está listo.");
+    })
+    .catch((err) => {
+        mostrar_modal(type="alert", func=null, message="Ocurrió un error al intentar generar el PDF.");
+        console.error(err);
+    }); 
 });
-
-// Estas funciones se ejecutan apenas carga la página.
-document.addEventListener('DOMContentLoaded', () => {
-    if (!sessionStorage.getItem("nombreUsuario")) {
-        alert('Necesitas tener un nombre de usuario para acceder a esta página.');
-        window.location.href = "index.html";
-    }
-})

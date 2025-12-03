@@ -13,55 +13,89 @@ main {
     display: none; /* para evitar mostrarlos en esta página */
 }
 
-/* 2. Título de Bienvenida (H1 dentro de Main) */
-main h1 {
-    font-size: 2.5em; /* Tamaño grande */
-    color: #333;
-    margin-bottom: 30px;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f4f6;
+    color: #1a1a1a;
 }
 
-/* 3. Contenedor del Formulario */
-.login-usuario {
-    background-color: #ffffff; 
-    padding: 30px;
-    border-radius: 8px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 450px; 
+main.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-/* 4. Estilos para el Formulario */
+.login-card {
+    background: #ffffff;
+    padding: 40px;
+    max-width: 380px;
+    border-radius: 16px;
+    border: 1px solid #d7d7d7;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.login-card h1 {
+    margin: 0 0 25px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+}
+
+/* ------ Form ------ */
 #form-bienvenida {
     display: flex;
-    flex-direction: column; 
-    gap: 20px; 
+    flex-direction: column;
+    gap: 15px;
 }
 
-#form-bienvenida label {
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #555;
+label {
+    font-size: 0.9rem;
+    color: #5a5a5a;
 }
 
-#form-bienvenida input[type="text"] {
+input {
     padding: 12px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #d7d7d7;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: #ffffff;
+    color: #1a1a1a;
 }
 
-#form-bienvenida button {
+input::placeholder {
+    color: #5a5a5a;
+}
+
+/* ------ Botón ------ */
+.btn-primary {
     padding: 12px;
-    font-size: 1em;
-    font-weight: bold;
-    background-color: #007bff;
-    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    background: #007aff;
+    color: #fff;
+    transition: filter 0.15s;
 }
 
-#form-bienvenida button:hover {
-    background-color: #0056b3; 
+.btn-primary:hover {
+    background-color: #0065d1;
+}
+
+/* ------ Modo oscuro ------ */
+
+.dark_theme .login-card, .dark_theme input {
+    background-color: #1a1c1e;
+    border-color: #2d2f33;
+    color: white;
+}
+
+.dark_theme .login-card h1 {
+    color: white;
+}
+
+.dark_theme input::placeholder, .dark_theme label {
+    color: #b5b5b5;
 }
