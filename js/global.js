@@ -1,13 +1,21 @@
 // Modal
 function mostrar_modal(type, func, content) {
+    // Como usar:
+    //   'type' es el tipo de modal que se mostrará en pantalla:
+    //      type="alert" mostrará un cartel con solo un botón 'Aceptar'.
+    //      type="confirm" mostrará un cartel con los botones 'Aceptar' y 'Cancelar'.
+    //      type="options" mostrará un cartel con un botón adicional configurable segun el contexto.
+    //   'func' es la clase que se le agregará al modal para poder acceder despues desde las funciones btnAceptarModal(), btnSecundarioModal() y btnCancelarModal(). 'func' puede ser null si no se necesita ninguna función posterior.
+    //   'content' es el mensaje que se le agregará al modal.
+    //   Si el tipo de modal es 'options', el 'content' deberá ser configurado como {message="Mensaje para el modal --String", btnSecundarioText="Texto para el boton secundario --String", btnAceptarVisible="Agregar btn 'Aceptar' al modal --booleano", btnCancelarVisible="Agregar btn 'Cancelar' al modal --booleano"}
     const modal = document.getElementById("modal");
     if (modal.classList.toString() !== "modal") {
         console.error(`El modal de tipo "${type}" no se pudo mostrar.`)
-        return;
+        return; //No mostrar el modal si hay tiene una clase activa además de 'modal'. Sirve para evitar superposiciones.
     } 
-    modal.classList.add(func);
+    modal.classList.add(func); //Agrega la clase al modal.
     modal.innerHTML = "";
-    if (type === "alert") {
+    if (type === "alert") { //Modal tipo 'alert'
         modal.innerHTML = `
             <div class="modal-card">
                 <p>${content}</p>
@@ -16,8 +24,8 @@ function mostrar_modal(type, func, content) {
                 </div>
             </div>
         `
-        modal.style.display = "flex";
-    } else if (type === "confirm") {
+        modal.style.display = "flex"; //Muestra el modal en pantalla
+    } else if (type === "confirm") { //Modal tipo 'confirm'
         modal.innerHTML = `
             <div class="modal-card">
                 <p>${content}</p>
@@ -28,7 +36,7 @@ function mostrar_modal(type, func, content) {
             </div>
         `
         modal.style.display = "flex";
-    } else if (type === "options") {
+    } else if (type === "options") { //Modal tipo 'options'
         modal.innerHTML = `
             <div class="modal-card">
                 <p>${content["message"]}</p>
@@ -40,13 +48,16 @@ function mostrar_modal(type, func, content) {
             </div>
         `
         modal.style.display = "flex";
-        if (!content["btnCancelarVisible"]) document.getElementById('cancelar-modal').remove();
-        if (!content["btnAceptarVisible"]) document.getElementById('aceptar-modal').remove();
+        if (!content["btnCancelarVisible"]) document.getElementById('cancelar-modal').remove(); //Si btnCancelarVisible es falso, elimina el boton 'Cancelar' del modal.
+        if (!content["btnAceptarVisible"]) document.getElementById('aceptar-modal').remove(); //Si btnAceptarVisible es falso, elimina el boton 'Aceptar' del modal.
     } else {
-        console.error(`No se reconoce a "${type}" como un tipo de modal valido.`);
+        console.error(`No se reconoce a "${type}" como un tipo de modal valido.`); //Muestra un mensaje de error en consola si el tipo de modal ingresado no es ninguno de los anteriores.
     }
 }
 
+// Funciones al usar el modal. Para acceder usamos "modal.classList.contains()" para obtener el valor que pasamos antes por 'func'.
+// Si el tipo de modal es 'alert' y no se necesita ninguna función posterior luego de presionar el boton 'Aceptar', no hace falta modificar nada de aca.
+// Función cuando se cancela el modal
 function btnCancelarModal() {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
@@ -57,6 +68,7 @@ function btnCancelarModal() {
         modal.classList = "modal";
     }
 };
+// Función cuando se usa el boton secundario del modal.
 function btnSecundarioModal() {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
@@ -70,6 +82,7 @@ function btnSecundarioModal() {
         modal.classList = "modal";
     }
 }
+// Función cuando se acepta el modal.
 function btnAceptarModal() {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
