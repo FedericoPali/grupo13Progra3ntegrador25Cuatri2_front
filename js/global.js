@@ -1,5 +1,5 @@
 // Modal
-function mostrar_modal(type, func, message) {
+function mostrar_modal(type, func, content) {
     const modal = document.getElementById("modal");
     if (modal.classList.toString() !== "modal") {
         console.error(`El modal de tipo "${type}" no se pudo mostrar.`)
@@ -10,7 +10,7 @@ function mostrar_modal(type, func, message) {
     if (type === "alert") {
         modal.innerHTML = `
             <div class="modal-card">
-                <p>${message}</p>
+                <p>${content}</p>
                 <div class="modal-actions">
                     <button class="btn-accept" id="aceptar-modal" onclick="btnAceptarModal()">Aceptar</button>
                 </div>
@@ -20,7 +20,7 @@ function mostrar_modal(type, func, message) {
     } else if (type === "confirm") {
         modal.innerHTML = `
             <div class="modal-card">
-                <p>${message}</p>
+                <p>${content}</p>
                 <div class="modal-actions">
                     <button class="btn-cancel" id="cancelar-modal" onclick="btnCancelarModal()">Cancelar</button>
                     <button class="btn-accept" id="aceptar-modal" onclick="btnAceptarModal()">Aceptar</button>
@@ -28,6 +28,20 @@ function mostrar_modal(type, func, message) {
             </div>
         `
         modal.style.display = "flex";
+    } else if (type === "options") {
+        modal.innerHTML = `
+            <div class="modal-card">
+                <p>${content["message"]}</p>
+                <div class="modal-actions">
+                    <button class="btn-cancel" id="cancelar-modal" onclick="btnCancelarModal()">Cancelar</button>
+                    <button class="btn-secundary" id="secundario-modal" onclick="btnSecundarioModal()">${content["btnSecundarioText"]}</button>
+                    <button class="btn-accept" id="aceptar-modal" onclick="btnAceptarModal()">Aceptar</button>
+                </div>
+            </div>
+        `
+        modal.style.display = "flex";
+        if (!content["btnCancelarVisible"]) document.getElementById('cancelar-modal').remove();
+        if (!content["btnAceptarVisible"]) document.getElementById('aceptar-modal').remove();
     } else {
         console.error(`No se reconoce a "${type}" como un tipo de modal valido.`);
     }
@@ -38,22 +52,48 @@ function btnCancelarModal() {
     modal.style.display = "none";
     if (modal.classList.contains('abrirCarrito')) {
         abrirCarrito(false);
+        modal.classList = "modal";
+    } else {
+        modal.classList = "modal";
     }
-    modal.classList = "modal";
 };
+function btnSecundarioModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+    if (modal.classList.contains('agregarCarrito')) {
+        window.location.href = "carrito.html";
+        modal.classList = "modal";
+    } else if (modal.classList.contains('abrirCarrito')) {
+        window.location.href = "productos.html";
+        modal.classList = "modal";
+    } else {
+        modal.classList = "modal";
+    }
+}
 function btnAceptarModal() {
     const modal = document.getElementById("modal");
     modal.style.display = "none";
     if (modal.classList.contains('abrirCarrito')) {
         abrirCarrito(true);
+        modal.classList = "modal";
     } else if (modal.classList.contains('nombreUsuario')) {
         window.location.href = "index.html";
+        modal.classList = "modal";
     } else if (modal.classList.contains('regresarIndex')) {
         window.location.href = "index.html";
         sessionStorage.removeItem("carrito");
         sessionStorage.removeItem("nombreUsuario");
+        modal.classList = "modal";
+    } else if (modal.classList.contains('vaciarCarrito')) {
+        carrito = [];
+        sessionStorage.removeItem("carrito");
+        actualizarCarrito();
+        console.log('actualizado');
+        modal.classList = "modal";
+        mostrar_modal(type="alert", func=null, content="Se eliminó el contenido de su carrito.");
+    } else {
+        modal.classList = "modal";
     }
-    modal.classList = "modal";
 };
 
 // nombres de los alumnos del grupo que vamos a poner en todas las pantallas
@@ -95,14 +135,14 @@ function agregarBotonAdmin(){
 }
 
 function volverIndex() {
-    mostrar_modal(type="confirm", func="regresarIndex", message='¿Seguro que quieres regresar a la página principal?\nTu carrito se borrará y la sesión actual se cerrará.');
+    mostrar_modal(type="confirm", func="regresarIndex", content='¿Seguro que quieres regresar a la página principal?<br>Tu carrito se borrará y la sesión actual se cerrará.');
 }
 
 // 3. Llamamos a la función al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     if (!(document.title === "Bienvenida - Neo Compute")) {
         if (!sessionStorage.getItem("nombreUsuario")) {
-            mostrar_modal(type="alert", func="nombreUsuario", message='Necesitas tener un nombre de usuario para acceder a esta página.');
+            mostrar_modal(type="alert", func="nombreUsuario", content='Necesitas tener un nombre de usuario para acceder a esta página.');
         }
     }
 

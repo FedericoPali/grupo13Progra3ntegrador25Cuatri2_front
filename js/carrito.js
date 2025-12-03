@@ -94,10 +94,7 @@ function eliminarProducto(i, b) {
 function vaciarCarrito() {
     const activo = document.getElementById('vaciar-carrito').classList;
     if (!activo.contains('disable')) {
-        carrito = [];
-        sessionStorage.removeItem("carrito");
-        actualizarCarrito();
-        console.log('actualizado');
+        mostrar_modal(type="confirm", func="vaciarCarrito", content="¿Desea eliminar el contenido de su carrito?<br>Esta acción no se puede revertir.")
     } else {
         console.log('no hay nada para actualizar');
     }
@@ -108,7 +105,7 @@ const botonCompra = document.getElementById("btn-comprar");
 botonCompra.addEventListener("click", async () => {
     const activo = botonCompra.classList;
     if (!activo.contains('disable')) {   
-        mostrar_modal(type="confirm", func="abrirCarrito", message='¿Desea finalizar la compra?');
+        mostrar_modal(type="options", func="abrirCarrito", content={message: '¿Desea finalizar la compra?', btnSecundarioText: 'Seguir comprando', btnAceptarVisible: true, btnCancelarVisible: true});
     } else {
         console.log('El carrito esta vacio, no puede avanzar');
     } 
@@ -143,13 +140,13 @@ async function abrirCarrito(respuesta) {
                 window.location.href = "ticket.html";
             } else {
                 console.error("Error del servidor: ", data); // muestra el mensaje de error que enviamos desde el backend
-                mostrar_modal(type="alert", func=null, message=`Hubo un problema: ${data.message}.`); // alerta para el usuario
+                mostrar_modal(type="alert", func=null, content=`Hubo un problema: ${data.content}.`); // alerta para el usuario
                 botonCompra.textContent= "Comprar";
                 botonCompra.classList.remove('disable');
             }
         } catch (error) {
             console.error("Error de red: ", error); // en caso de que no este el servidor levantado
-            mostrar_modal(type="alert", func=null, message="No se logró establecer conexión con el servidor.");
+            mostrar_modal(type="alert", func=null, content="No se logró establecer conexión con el servidor.");
             botonCompra.textContent = "Comprar";
             botonCompra.classList.remove('disable');
         }

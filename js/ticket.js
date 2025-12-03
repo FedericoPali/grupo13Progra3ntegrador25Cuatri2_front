@@ -53,10 +53,10 @@ botonDescargar.addEventListener("click", () => {
     };
 
     html2pdf().set(opciones).from(elementoParaImprimir).save().then(() => {
-        mostrar_modal(type="alert", func=null, message="Tu ticket ya está listo.");
+        mostrar_modal(type="alert", func=null, content="Tu ticket ya está listo.");
     })
     .catch((err) => {
-        mostrar_modal(type="alert", func=null, message="Ocurrió un error al intentar generar el PDF.");
+        mostrar_modal(type="alert", func=null, content="Ocurrió un error al intentar generar el PDF.");
         console.error(err);
     }); 
 });

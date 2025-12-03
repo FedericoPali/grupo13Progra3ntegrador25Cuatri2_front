@@ -190,6 +190,7 @@ footer p {
 }
 
 .btn-accept,
+.btn-secundary,
 .btn-cancel {
     padding: 10px 18px;
     border-radius: 10px;
@@ -198,12 +199,21 @@ footer p {
 }
 
 .btn-accept {
-    background-color: #007aff;
-    color: #fff;
+    background-color: #2fff00;
+    color: #1a1a1a;
 }
 
 .btn-accept:hover {
-    background-color: #004fa4;
+    background-color: #4bbb00;
+}
+
+.btn-secundary {
+    background-color: #2400c2;
+    color: #d7d7d7;
+}
+
+.btn-secundary:hover {
+    background-color: #000a79;
 }
 
 .btn-cancel {

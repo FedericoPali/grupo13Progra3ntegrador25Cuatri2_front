@@ -17,7 +17,7 @@ async function obtenerProductos() {
     } catch (error) {
         console.error("Error obteniendo productos: ", error);
         listaProductos.innerHTML = "<p>No se pudieron cargar los productos.</p>";
-        mostrar_modal(type="alert", func=null, message="Ocurrió un error al intentar obtener los productos.");
+        mostrar_modal(type="alert", func=null, content="Ocurrió un error al intentar obtener los productos.");
     }
 }
 
@@ -57,10 +57,14 @@ function mostrarProductos(arrayDeProductos) {
         if (producto.activo === 1) {
             cartaProcesadores += `
             <div class="card-producto card-producto-procesadores">
-                <img src="${producto.ruta_img}" alt="${producto.nombre}">
-                <h3>${producto.nombre}</h3>
-                <p>$${producto.precio}</p>
-                <button onclick="agregarACarrito(${producto.id_producto})">Agregar al carrito</button>
+                <div class="card-producto-content">
+                    <img src="${producto.ruta_img}" alt="${producto.nombre}">
+                    <div style="width: 100%">
+                        <h3>${producto.nombre}</h3>
+                        <p>$${producto.precio}</p>
+                        <button onclick="agregarACarrito(${producto.id_producto})">Agregar al carrito</button>
+                    </div>
+                </div>
             </div>
             `;
         }
@@ -74,10 +78,14 @@ function mostrarProductos(arrayDeProductos) {
         if (producto.activo === 1) {
             cartaGraficas += `
             <div class="card-producto card-producto-graficas">
-                <img src="${producto.ruta_img}" alt="${producto.nombre}">
-                <h3>${producto.nombre}</h3>
-                <p>$${producto.precio}</p>
-                <button onclick="agregarACarrito(${producto.id_producto})">Agregar al carrito</button>
+                <div class="card-producto-content">
+                    <img src="${producto.ruta_img}" alt="${producto.nombre}">
+                    <div style="width: 100%">
+                        <h3>${producto.nombre}</h3>
+                        <p>$${producto.precio}</p>
+                        <button onclick="agregarACarrito(${producto.id_producto})">Agregar al carrito</button>
+                    </div>
+                </div>
             </div>
             `;
         }
@@ -111,7 +119,7 @@ function agregarACarrito(id) {
         carrito.push({ ...productoEscogido, cantidad: 1 });
     }
 
-    mostrar_modal(type="alert", func=null, message=`Agregaste a tu carrito "${productoEscogido.nombre}".`)
+    mostrar_modal(type="options", func="agregarCarrito", content={message:`Agregaste a tu carrito "${productoEscogido.nombre}".`, btnSecundarioText: "Ver carrito", btnAceptarVisible: true, btnCancelarVisible: false})
 
     // Guardamos el carrito actualizado en sessionStorage.
     sessionStorage.setItem("carrito", JSON.stringify(carrito));
