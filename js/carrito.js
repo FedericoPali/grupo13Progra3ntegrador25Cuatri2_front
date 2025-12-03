@@ -28,9 +28,9 @@ function actualizarCarrito() {
                 </div>
                 <div class="carritoResponsive">
                     <div class="opcionesCarrito">
-                        <button class="btn-outline" onclick="eliminarProducto(${i}, false)">-</button>
+                        <button class="btn-outline" onclick="eliminarProducto(${i}, false)"><span class="material-symbols-outlined">remove</span></button>
                         <p>${p.cantidad}</p>
-                        <button class="btn-outline" onclick="sumarStockCarrito(${p.id_producto})">+</button>
+                        <button class="btn-outline" onclick="sumarStockCarrito(${p.id_producto})"><span class="material-symbols-outlined">add</span></button>
                     </div>
                     <p class="subtotal movil">$${p.precio * p.cantidad}.-</p>
                 </div>
@@ -108,62 +108,56 @@ const botonCompra = document.getElementById("btn-comprar");
 botonCompra.addEventListener("click", async () => {
     const activo = botonCompra.classList;
     if (!activo.contains('disable')) {   
-        if (confirm('¿Desea finalizar la compra?')) {
-
-            const nombreUsuario = sessionStorage.getItem("nombreUsuario");
-
-            const totalCalculado = calcularTotalCarrito();
-
-            const detallesVenta = {
-                nombre_usuario: nombreUsuario,
-                precio_total: totalCalculado,
-                productos: carrito
-            }
-            try{
-                // deshabilitamos el boton para evitar doble clics
-                botonCompra.textContent = "Procesando...";
-                botonCompra.classList.add('disable');
-
-                const response = await fetch(`${url}/api/sales`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(detallesVenta)
-                });
-                const data = await response.json() // lee la respuesta del servidor
-
-                if(response.ok) {
-                    console.log("Venta registrada: ", data);
-                    window.location.href = "ticket.html";
-                    
-                } else {
-                    console.error("Error del servidor: ", data); // muestra el mensaje de error que enviamos desde el backend
-                    alert(`Hubo un problema: ${data.message}`); // alerta para el usuario
-
-                    botonCompra.textContent= "Comprar";
-                    botonCompra.classList.remove('disable');
-                }
-            } catch (error) {
-                console.error("Error de red: ", error); // en caso de que no este el servidor levantado
-                alert("No se pudo conectar con el servidor");
-
-                botonCompra.textContent = "Comprar";
-                botonCompra.classList.remove('disable');
-            }
-
-        } 
+        mostrar_modal(type="confirm", func="abrirCarrito", message='¿Desea finalizar la compra?');
     } else {
         console.log('El carrito esta vacio, no puede avanzar');
     } 
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (!sessionStorage.getItem("nombreUsuario")) {
-        alert('Necesitas tener un nombre de usuario para acceder a esta página.');
-        window.location.href = "index.html";
+async function abrirCarrito(respuesta) {
+    if (respuesta) {
+        const nombreUsuario = sessionStorage.getItem("nombreUsuario");
+        const totalCalculado = calcularTotalCarrito();
+        const detallesVenta = {
+            nombre_usuario: nombreUsuario,
+            precio_total: totalCalculado,
+            productos: carrito
+        }
+
+        try{
+            // deshabilitamos el boton para evitar doble clics
+            botonCompra.textContent = "Procesando...";
+            botonCompra.classList.add('disable');
+            const response = await fetch(`${url}/api/sales`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(detallesVenta)
+            });
+            const data = await response.json() // lee la respuesta del servidor
+            if(response.ok) {
+                console.log("Venta registrada: ", data);
+                botonCompra.textContent = "Comprar";
+                botonCompra.classList.remove('disable');
+                window.location.href = "ticket.html";
+            } else {
+                console.error("Error del servidor: ", data); // muestra el mensaje de error que enviamos desde el backend
+                mostrar_modal(type="alert", func=null, message=`Hubo un problema: ${data.message}.`); // alerta para el usuario
+                botonCompra.textContent= "Comprar";
+                botonCompra.classList.remove('disable');
+            }
+        } catch (error) {
+            console.error("Error de red: ", error); // en caso de que no este el servidor levantado
+            mostrar_modal(type="alert", func=null, message="No se logró establecer conexión con el servidor.");
+            botonCompra.textContent = "Comprar";
+            botonCompra.classList.remove('disable');
+        }
+    } else {
+        console.log("Se canceló la compra.")
     }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     cargarCarrito();
 })
-
-console.log(carrito);

@@ -8,20 +8,16 @@ let todosLosProductos = [];
 async function obtenerProductos() {
     try {
         let response = await fetch(`${url}/api/products`);
-
         console.log(`Solicitud fetch GET a ${url}/api/products`);
-
         let data = await response.json();
-
         console.log(data);
         todosLosProductos = data.payload;
         console.log(todosLosProductos);
-
         mostrarProductos(todosLosProductos);
-
     } catch (error) {
         console.error("Error obteniendo productos: ", error);
-        listaProductos.innerHTML = "<p>No se pudieron cargar los productos.</p>"
+        listaProductos.innerHTML = "<p>No se pudieron cargar los productos.</p>";
+        mostrar_modal(type="alert", func=null, message="Ocurrió un error al intentar obtener los productos.");
     }
 }
 
@@ -115,6 +111,8 @@ function agregarACarrito(id) {
         carrito.push({ ...productoEscogido, cantidad: 1 });
     }
 
+    mostrar_modal(type="alert", func=null, message=`Agregaste a tu carrito "${productoEscogido.nombre}".`)
+
     // Guardamos el carrito actualizado en sessionStorage.
     sessionStorage.setItem("carrito", JSON.stringify(carrito));
     
@@ -143,9 +141,5 @@ barraBusqueda.addEventListener("keyup", () => {
 // --- 5. INICIALIZACIÓN ---
 // Estas funciones se ejecutan apenas carga la página de productos.
 document.addEventListener('DOMContentLoaded', () => {
-    if (!sessionStorage.getItem("nombreUsuario")) {
-        alert('Necesitas tener un nombre de usuario para acceder a esta página.');
-        window.location.href = "index.html";
-    }
     actualizarContadorCarrito();
 })

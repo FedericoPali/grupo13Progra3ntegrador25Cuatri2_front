@@ -1,3 +1,61 @@
+// Modal
+function mostrar_modal(type, func, message) {
+    const modal = document.getElementById("modal");
+    if (modal.classList.toString() !== "modal") {
+        console.error(`El modal de tipo "${type}" no se pudo mostrar.`)
+        return;
+    } 
+    modal.classList.add(func);
+    modal.innerHTML = "";
+    if (type === "alert") {
+        modal.innerHTML = `
+            <div class="modal-card">
+                <p>${message}</p>
+                <div class="modal-actions">
+                    <button class="btn-accept" id="aceptar-modal" onclick="btnAceptarModal()">Aceptar</button>
+                </div>
+            </div>
+        `
+        modal.style.display = "flex";
+    } else if (type === "confirm") {
+        modal.innerHTML = `
+            <div class="modal-card">
+                <p>${message}</p>
+                <div class="modal-actions">
+                    <button class="btn-cancel" id="cancelar-modal" onclick="btnCancelarModal()">Cancelar</button>
+                    <button class="btn-accept" id="aceptar-modal" onclick="btnAceptarModal()">Aceptar</button>
+                </div>
+            </div>
+        `
+        modal.style.display = "flex";
+    } else {
+        console.error(`No se reconoce a "${type}" como un tipo de modal valido.`);
+    }
+}
+
+function btnCancelarModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+    if (modal.classList.contains('abrirCarrito')) {
+        abrirCarrito(false);
+    }
+    modal.classList = "modal";
+};
+function btnAceptarModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+    if (modal.classList.contains('abrirCarrito')) {
+        abrirCarrito(true);
+    } else if (modal.classList.contains('nombreUsuario')) {
+        window.location.href = "index.html";
+    } else if (modal.classList.contains('regresarIndex')) {
+        window.location.href = "index.html";
+        sessionStorage.removeItem("carrito");
+        sessionStorage.removeItem("nombreUsuario");
+    }
+    modal.classList = "modal";
+};
+
 // nombres de los alumnos del grupo que vamos a poner en todas las pantallas
 const alumnos = [
     { nombre: "Federico", apellido: "Pali" },
@@ -37,20 +95,21 @@ function agregarBotonAdmin(){
 }
 
 function volverIndex() {
-    if (confirm('¿Seguro que quieres regresar a la página principal?\nTu carrito se borrará y la sesión actual se cerrará.')) {
-        window.location.href = "index.html";
-        sessionStorage.removeItem("carrito");
-        sessionStorage.removeItem("nombreUsuario");
-    }
+    mostrar_modal(type="confirm", func="regresarIndex", message='¿Seguro que quieres regresar a la página principal?\nTu carrito se borrará y la sesión actual se cerrará.');
 }
 
 // 3. Llamamos a la función al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
+    if (!(document.title === "Bienvenida - Neo Compute")) {
+        if (!sessionStorage.getItem("nombreUsuario")) {
+            mostrar_modal(type="alert", func="nombreUsuario", message='Necesitas tener un nombre de usuario para acceder a esta página.');
+        }
+    }
 
     const temaGuardado = localStorage.getItem('tema');
 
     if(temaGuardado === 'oscuro') {
-        document.body.classList.add('enable');
+        document.body.classList.add('dark_theme');
     }
 
     imprimirDatosAlumnos(alumnos);
@@ -61,22 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function cambiarTema(){
     const body = document.body
     const claseBody = body.classList;
+    if(claseBody.contains('dark_theme')){
+        body.classList.remove("dark_theme");
+        localStorage.setItem('tema', 'claro')
     
-    if(confirm("Quiere cambiar el tema?")){
-        console.log(claseBody);
-        
-        if(claseBody.contains('enable')){
-            body.classList.remove("enable");
-            console.log(claseBody);
-
-            localStorage.setItem('tema', 'claro')
-        
-        } else {
-            body.classList.add('enable');
-            console.log(claseBody);
-
-            localStorage.setItem('tema', 'oscuro')
-            
-        }
+    } else {
+        body.classList.add('dark_theme');
+        localStorage.setItem('tema', 'oscuro')
     }
 }
