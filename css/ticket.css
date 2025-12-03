@@ -127,12 +127,25 @@ main {
 
 /* Tema Oscuro */
 
-.dark_theme.enable .ticket {
-    background-color: #333;
+.dark_theme .ticket {
+    background-color: #1A1C1E;
+    border-color: #3A3C42;
 }
 
-.dark_theme.enable p#usuario, .dark_theme.enable p#fecha , .dark_theme.enable p#nro_ticket{
+.dark_theme .ticket h2 {
+    color: #E1E1E1;
+}
+
+.dark_theme .ticket #usuario, .dark_theme .ticket #fecha, .dark_theme .ticket #nro_ticket {
+    color: #AEAEB2;
+}
+
+.dark_theme p#usuario {
     color: white;
+}
+
+.dark_theme .ticket-format {
+    border-color: #474747;
 }
 
 /* medidas responsive */

@@ -1,29 +1,34 @@
+/* ------ Barra de busqueda ------ */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #d7d7d7;
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 100%;
+}
+
+.search-bar span {
+    font-size: 20px;
+    color: #b5b5b5;
+}
+
 #barraBusqueda {
-    padding: 5px 10px;
-    background-color: rgb(27, 21, 147);
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #F65916;
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    color: white;
 }
 
 #barraBusqueda::placeholder {
-    color: #F65916;
+    color: #b5b5b5;
 }
 
-.filtros button {
-    padding: 8px 15px;
-    margin: 5px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.filtros button:hover {
-    background-color: #0056b3;
-}
-
+/* ------ Productos ------ */
 .cards-products {
     display: flex;        
     flex-wrap: wrap;     
@@ -108,24 +113,38 @@
 
 /* Cambios de colores con tema oscuro */
 
-.dark_theme.enable .categoria-columna{
-    background-color: #333;
+.dark_theme .categoria-columna{
+    background-color: #1A1C1E;
+    border-color: #3A3C42;
 }
 
-.dark_theme.enable .card-producto {
-    background-color: gray;
+.dark_theme .card-producto {
+    background-color: #1E1F22;
+    border-color: #3A3C42;
 }
 
+.dark_theme .categoria-titulo {
+    border-color: #2D2F33;
+}
+
+.dark_theme .card-producto p {
+    color: #E1E1E1;
+}
 
 /* Media Responsive */
 @media (max-width: 768px) {
 
     .categorias-container {
         flex-direction: column;
-        align-items: center; 
+        align-items: center;
+        padding: 0;
     }
 
     .categoria-columna {
         width: 90%; 
+    }
+
+    .search-bar {
+        width: 90%;
     }
 }
